@@ -8,6 +8,8 @@ Created on Wed Jul 30 20:00:55 2014
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.pool import Pool
 
+from hashlib import md5
+
 ROLE_USER = 0
 ROLE_ADMIN = 1
 
@@ -23,6 +25,10 @@ class User(ModelSQL, ModelView):
     role = fields.Integer('role')
     about_me = fields.Text('about_me')
     last_seen = fields.DateTime('last_seen')
+    
+    def avatar(self, size):
+        return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest()\
+        + '?d=mm&s=' + str(size)
     
     @classmethod
     def default_role(cls):
