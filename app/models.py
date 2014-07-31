@@ -35,6 +35,13 @@ class User(ModelSQL):
     def default_role(cls):
         return ROLE_USER
         
+    _sql_constraints = [('PrimaryKey', 'PRIMARY KEY(ID)', 'pk_error'),
+                        ('UniqueNick', 'UNIQUE(nickname)', 'unique_error'),
+                        ('UniqueEmail', 'UNIQUE(email)', 'unique_error')]
+    
+    _sql_error_messages = {'pk_error': 'This field is a primary key, it must\
+    be specified!', 'unique_error': 'This field must be unique!'}
+        
 class Post(ModelSQL):
     """
     Defines a post on the blog.
