@@ -52,6 +52,11 @@ class Post(ModelSQL):
     body = fields.Text('body')
     timestamp = fields.DateTime('timestamp')
     user_id = fields.Many2One('app.user', 'User')    
+    
+    _sql_constraints = [('PrimaryKey', 'PRIMARY KEY(ID)', 'pk_error')]    
+    
+    _sql_error_messages = {'pk_error': 'This field is a primary key, it must\
+    be specified!'}
 
 Pool.register(User)
 Pool.register(Post)
