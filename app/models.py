@@ -47,3 +47,4 @@ class Post(ModelSQL, ModelView):
     user_id = fields.Many2One('app.user', 'User')    
 
 Pool.register(User)
+Pool.register(Post)
