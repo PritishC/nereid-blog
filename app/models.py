@@ -13,7 +13,7 @@ from hashlib import md5
 ROLE_USER = 0
 ROLE_ADMIN = 1
 
-class User(ModelSQL, ModelView):
+class User(ModelSQL):
     """
     Defines a User of the blog.
     """
@@ -35,7 +35,7 @@ class User(ModelSQL, ModelView):
     def default_role(cls):
         return ROLE_USER
         
-class Post(ModelSQL, ModelView):
+class Post(ModelSQL):
     """
     Defines a post on the blog.
     """
