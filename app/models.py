@@ -18,13 +18,14 @@ class User(ModelSQL, ModelView):
     Defines a User of the blog.
     """
     _description = __doc__
-    _name = "app.User"
+    _name = "app.user"
     id = fields.Integer('ID')
     nickname = fields.Char('nickname')
     email = fields.Char('email')
     role = fields.Integer('role')
     about_me = fields.Text('about_me')
     last_seen = fields.DateTime('last_seen')
+    posts = fields.One2Many('app.post', 'user_id', 'Post')
     
     def avatar(self, size):
         return 'http://www.gravatar.com/avatar/' + md5(self.email).hexdigest()\
@@ -39,7 +40,10 @@ class Post(ModelSQL, ModelView):
     Defines a post on the blog.
     """
     _description = __doc__
-    _name = "app.Post"
-    
+    _name = "app.post"
+    id = fields.Integer('ID')
+    body = fields.Text('body')
+    timestamp = fields.DateTime('timestamp')
+    user_id = fields.Many2One('app.user', 'User')    
 
 Pool.register(User)
