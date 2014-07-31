@@ -21,9 +21,19 @@ class User(ModelSQL, ModelView):
     nickname = fields.Char('nickname')
     email = fields.Char('email')
     role = fields.Integer('role')
+    about_me = fields.Text('about_me')
+    last_seen = fields.DateTime('last_seen')
     
     @classmethod
     def default_role(cls):
         return ROLE_USER
+        
+class Post(ModelSQL, ModelView):
+    """
+    Defines a post on the blog.
+    """
+    _description = __doc__
+    _name = "app.Post"
+    
 
 Pool.register(User)
