@@ -27,7 +27,7 @@ class EditForm(Form):
         if self.nickname.data == self.original_nickname:
             return True
         table = User.__table__()
-        cursor = Transaction.cursor()
+        cursor = Transaction().cursor
         cursor.execute(*table.select(table.nickname, where=(table.nickname == self.nickname.data)))
         if cursor.fetchall() != None:
             self.nickname.errors.append('This nickname is already in use'.)
