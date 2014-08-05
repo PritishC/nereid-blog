@@ -42,6 +42,9 @@ class User(ModelSQL):
     _sql_error_messages = {'pk_error': 'This field is a primary key, it must\
     be specified!', 'unique_error': 'This field must be unique!'}
     
+    def is_authenticated(self):
+        return True
+    
     def __repr__(self):
         return '<User {0!r}>'.format(self.nickname)
         
@@ -64,5 +67,5 @@ class Post(ModelSQL):
     def __repr__(self):
         return '<Post {0!r}>'.format(self.body)
 
-Pool.register(User)
-Pool.register(Post)
+#Pool.register(User)
+#Pool.register(Post)
