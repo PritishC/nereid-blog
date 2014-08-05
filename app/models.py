@@ -50,6 +50,9 @@ class User(ModelSQL):
         
     def is_anonymous(self):
         return False
+        
+    def get_id(self):
+        return unicode(self.id)
     
     def __repr__(self):
         return '<User {0!r}>'.format(self.nickname)
