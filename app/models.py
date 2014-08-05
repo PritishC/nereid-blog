@@ -48,6 +48,8 @@ class User(ModelSQL):
     def is_active(self):
         return True
         
+    def is_anonymous(self):
+        return False
     
     def __repr__(self):
         return '<User {0!r}>'.format(self.nickname)
