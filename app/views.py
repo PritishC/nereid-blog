@@ -12,3 +12,24 @@ from app import app, lm, oid
 from forms import LoginForm, EditForm
 from models import User, ROLE_USER, ROLE_ADMIN
 
+@app.route('/')
+@app.route('/index')
+@login_required
+def index():
+    user = g.user
+    posts = [ # some posts
+        {
+            'author': {'nickname': 'John'},
+            'body': 'This is a post.'            
+        },
+        {
+            'author': {'nickname': 'Somebody'},
+            'body': 'This is another post.'
+        }
+    ]
+    
+    return render_template("index.html",
+                           title='Home',
+                           user=user,
+                           posts=posts)
+
